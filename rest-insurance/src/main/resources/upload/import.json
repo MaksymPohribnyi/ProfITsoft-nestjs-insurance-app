@@ -1,0 +1,102 @@
+[
+	{
+		"policyNumber": "12345",
+		"policyType": "health",
+		"startDate": "2099-01-01",
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"life"
+		],
+		"clientId": "11111111-0000-0000-0000-000000000001"
+	},
+	{
+		"policyNumber": "54321",
+		"policyType": "premium",
+		"startDate": "2099-01-01",
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"car"
+		],
+		"clientId": "11111111-0000-0000-0000-000000000001"
+	},
+	{
+		"policyNumber": "12345",
+		"policyType": "duplicateNumber",
+		"startDate": "2099-01-01",
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"life"
+		],
+		"clientId": "11111111-0000-0000-0000-000000000001"
+	},
+	{
+		"policyNumber": "12345",
+		"policyType": "withoutClient",
+		"startDate": "2099-01-01",
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"life"
+		],
+		"clientId": ""
+	},
+	{
+		"policyNumber": "12345",
+		"policyType": "withNullClient",
+		"startDate": "2099-01-01",
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"life"
+		],
+		"clientId": null
+	},
+	{
+		"policyNumber": "567890",
+		"policyType": "notExistedClient",
+		"startDate": "2099-01-01",
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"house"
+		],
+		"clientId": "11111111-0000-0000-0000-999999999991"
+	},
+	{
+		"policyNumber": "12345",
+		"policyType": "withNullStartDate",
+		"startDate": null,
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"life"
+		],
+		"clientId": ""
+	},
+	{
+		"policyNumber": "12345",
+		"policyType": "withNullEndDate",
+		"startDate": "2099-01-01",
+		"endDate": null,
+		"coveredRisks": [
+			"life"
+		],
+		"clientId": null
+	},
+	{
+		"policyNumber": "67890",
+		"policyType": "health",
+		"startDate": "2099-01-01",
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"life"
+		],
+		"clientId": "11111111-0000-0000-0000-000000000001"
+	},
+	{
+		"policyNumber": "098765",
+		"policyType": "premium",
+		"startDate": "2099-01-01",
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"car"
+		],
+		"clientId": "11111111-0000-0000-0000-000000000001"
+	}
+]

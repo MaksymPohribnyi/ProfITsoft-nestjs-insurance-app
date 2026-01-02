@@ -1,0 +1,25 @@
+[
+	{
+		"policyNumber": "POL-2099-001",
+		"policyType": "Health Insurance Standard",
+		"startDate": "2099-01-01",
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"Inpatient Treatment",
+			"Outpatient Surgery"
+		],
+		"clientId": "{{clientId}}"
+	},
+	{
+		"policyNumber": "POL-2099-002",
+		"policyType": "Auto Insurance Premium",
+		"startDate": "2099-06-01",
+		"endDate": "2100-06-01",
+		"coveredRisks": [
+			"Collision",
+			"Theft",
+			"Third Party Liability"
+		],
+		"clientId": "{{clientId}}"
+	}
+]

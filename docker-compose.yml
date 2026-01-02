@@ -1,0 +1,89 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: insurance-postgres
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-insurance_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - insurance-network
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-insurance_db}",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  java-rest:
+    build:
+      context: ./rest-insurance
+      dockerfile: Dockerfile
+    container_name: insurance-java-rest
+    env_file:
+      - .env
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-insurance_db}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-postgres}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - insurance-network
+
+  mongo:
+    image: mongo:8.0.4
+    container_name: insurance-mongo
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - insurance-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  nestjs-app:
+    build:
+      context: ./nestjs-payments
+      dockerfile: Dockerfile
+    ports:
+      - "7777:7777"
+    env_file:
+      - .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: ${NESTJS_PORT:-7777}
+      MONGO_ADDRESS: mongodb://mongo:27017/${MONGO_DB}
+      POLICY_SERVICE_URL: ${POLICY_SERVICE_URL}
+    depends_on:
+      mongo:
+        condition: service_healthy
+      java-rest:
+        condition: service_started
+    networks:
+      - insurance-network
+
+volumes:
+  postgres-data:
+  mongo-data:
+
+networks:
+  insurance-network:
+    driver: bridge

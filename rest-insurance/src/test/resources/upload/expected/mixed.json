@@ -1,0 +1,32 @@
+[
+	{
+		"policyNumber": "POL-MIXED-UNIQUE",
+		"policyType": "Life Insurance",
+		"startDate": "2099-01-01",
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"Death"
+		],
+		"clientId": "{{clientId}}"
+	},
+	{
+		"policyNumber": "POL-MIXED-UNIQUE",
+		"policyType": "Life Insurance",
+		"startDate": "2099-01-01",
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"Death"
+		],
+		"clientId": "{{clientId}}"
+	},
+	{
+		"policyNumber": "POL-BAD-CLIENT",
+		"policyType": "Property Insurance",
+		"startDate": "2099-01-01",
+		"endDate": "2099-12-31",
+		"coveredRisks": [
+			"Fire"
+		],
+		"clientId": "00000000-0000-0000-0000-000000000000"
+	}
+]
