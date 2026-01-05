@@ -20,7 +20,4 @@ COPY --from=production-dependencies /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY package.json ./
 
-# Install curl for healthcheck
-RUN apk add --no-cache curl
-
 CMD ["node", "dist/main.js"]
