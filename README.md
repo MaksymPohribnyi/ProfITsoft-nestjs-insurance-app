@@ -60,3 +60,115 @@ The service exposes the following REST endpoints:
 |--------|----------|-------------|
 | **GET** |/health |Check service status|
 | **GET** |/ping |Check service status|
+
+## 🌐 API Reference
+### Base URL: http://localhost:7777
+
+### 1. Create Payment
+
+**Example Request**
+
+```bash
+# Linux/macOS
+curl -X POST http://localhost:7777/payments \
+  -H "Content-Type: application/json" \
+  -d '{
+    "policyId": "22222222-0000-0000-0000-000000000001",
+    "paymentAmount": 1500,
+    "paymentMethod": "credit_card",
+    "status": "completed",
+    "description": "Annual premium payment"
+  }'
+```
+
+```bash
+# Windows
+curl -X POST http://localhost:7777/payments ^
+  -H "Content-Type: application/json" ^
+  -d "{\"policyId\":\"22222222-0000-0000-0000-000000000001\",\"paymentAmount\":1500,\"paymentMethod\":\"credit_card\",\"status\":\"completed\",\"description\":\"Annual premium payment\"}"
+```
+
+**Example Response**
+
+```json
+{
+  "id": "695bf19ac838542f467581a8"
+}
+```
+
+### 2. List Payments
+
+**Example Request**
+
+```bash
+# Linux/macOS/Windows
+curl "http://localhost:7777/payments?policyId=22222222-0000-0000-0000-000000000001&size=10&from=0"
+```
+
+**Example Response**
+
+```json
+[
+  {
+    "_id": "695bf25cc838542f467581ac",
+    "policyId": "22222222-0000-0000-0000-000000000001",
+    "paymentAmount": 1500,
+    "paymentDate": "2026-01-05T17:18:20.661Z",
+    "paymentMethod": "credit_card",
+    "status": "completed",
+    "description": "Annual premium payment",
+    "createdAt": "2026-01-05T17:18:20.662Z",
+    "updatedAt": "2026-01-05T17:18:20.662Z"
+  },
+  {
+    "_id": "695bf250c838542f467581aa",
+    "policyId": "22222222-0000-0000-0000-000000000001",
+    "paymentAmount": 1500,
+    "paymentDate": "2026-01-05T17:18:08.529Z",
+    "paymentMethod": "credit_card",
+    "status": "completed",
+    "description": "Annual premium payment",
+    "createdAt": "2026-01-05T17:18:08.530Z",
+    "updatedAt": "2026-01-05T17:18:08.530Z"
+  },
+  {
+    "_id": "695bf19ac838542f467581a8",
+    "policyId": "22222222-0000-0000-0000-000000000001",
+    "paymentAmount": 1500,
+    "paymentDate": "2026-01-05T17:15:06.013Z",
+    "paymentMethod": "credit_card",
+    "status": "completed",
+    "description": "Annual premium payment",
+    "createdAt": "2026-01-05T17:15:06.018Z",
+    "updatedAt": "2026-01-05T17:15:06.018Z"
+  }
+]
+```
+
+### 3. Get Payment Counts
+
+**Example Request**
+
+```bash
+# Linux/macOS
+curl -X POST http://localhost:7777/payments/_counts \
+  -H "Content-Type: application/json" \
+  -d '{"policyIds": ["POLICY_ID_1", "POLICY_ID_2"]}'
+```
+
+```bash
+# Windows
+```bash
+curl -X POST http://localhost:7777/payments/_counts ^
+-H "Content-Type: application/json" ^
+-d "{\"policyIds\":[\"22222222-0000-0000-0000-000000000001\",\"22222222-0000-0000-0000-000000000005\"]}"
+```
+
+**Example Response**
+
+```json
+{
+  "22222222-0000-0000-0000-000000000001": 3,
+  "22222222-0000-0000-0000-000000000005": 4
+}
+```
