@@ -82,7 +82,7 @@ curl -X POST http://localhost:7777/payments \
 ```
 
 ```bash
-# Windows
+# Windows CMD
 curl -X POST http://localhost:7777/payments ^
   -H "Content-Type: application/json" ^
   -d "{\"policyId\":\"22222222-0000-0000-0000-000000000001\",\"paymentAmount\":1500,\"paymentMethod\":\"credit_card\",\"status\":\"completed\",\"description\":\"Annual premium payment\"}"
@@ -157,8 +157,7 @@ curl -X POST http://localhost:7777/payments/_counts \
 ```
 
 ```bash
-# Windows
-```bash
+# Windows CMD
 curl -X POST http://localhost:7777/payments/_counts ^
 -H "Content-Type: application/json" ^
 -d "{\"policyIds\":[\"22222222-0000-0000-0000-000000000001\",\"22222222-0000-0000-0000-000000000005\"]}"
